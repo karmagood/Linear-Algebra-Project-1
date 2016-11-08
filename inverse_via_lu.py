@@ -15,7 +15,7 @@ class Matrix(object):
 		self.L = np.zeros((m,m))
 		self.U = np.zeros((m,m))
 		self.P = self._P()
-		PA = np.dot(self.P, self.matrix)
+		PA = self.P * self.matrix
 		for j in range(m):
 			self.L[j,j] = 1.0
 			for i in range(j+1):
@@ -72,9 +72,10 @@ class Matrix(object):
 	def transpose(self, matrix):
 		tran = [[j[i] for j in matrix] for i in range(len(matrix[0]))]
 		return tran
+
 	def matrix_inverse(self):
 		self.LU()
-		return np.dot(np.dot(self.gj_inverse(self.U),self.gj_inverse(self.L)),self.transpose(self.P))
+		return np.matrix(self.gj_inverse(self.U))*np.matrix(self.gj_inverse(self.L))*np.matrix(self.transpose(self.P))
 
 
 if __name__ == '__main__':
@@ -86,4 +87,5 @@ if __name__ == '__main__':
 	#print(np.dot(mat.P,np.dot(mat.L, mat.U)))
 	print(mat.gj_inverse(mat.L))
 	print(mat.gj_inverse(mat.U))
+	print(mat.matrix_inverse())
 	print(mat.matrix_inverse())
