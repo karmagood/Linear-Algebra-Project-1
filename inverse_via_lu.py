@@ -73,6 +73,7 @@ class Matrix(object):
 		tran = [[j[i] for j in matrix] for i in range(len(matrix[0]))]
 		return tran
 	def matrix_inverse(self):
+		self.LU()
 		return np.dot(np.dot(self.gj_inverse(self.U),self.gj_inverse(self.L)),self.transpose(self.P))
 
 
