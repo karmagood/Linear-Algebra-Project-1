@@ -76,7 +76,7 @@ class Matrix(object):
 
 	def check_matrix(self):
 		if not self.matrix.shape[0] == self.matrix.shape[1]:
-			raise Exception("Matrix is not square matrix, it doesn't have inverse")
+			raise Exception("Matrix is not square matrix, it doesn't have an inverse")
 		d = self.det()
 		if d:
 			raise Exception(d)
@@ -84,7 +84,13 @@ class Matrix(object):
 		determ = round(np.linalg.det(self.matrix),1)
 		
 		if not determ:
-		 	return "The determinant of a matrix is equal to zero, then the matrix does not have an inverse" 
+		 	return "The determinant of a matrix is equal to zero, then the matrix does not have an inverse"
+	
+	def final_check(self):
+		matrix_A = self.matrix
+		inverse = matrix.matrix_inverse()
+		dot = np.dot(matrix_A, inverse)
+		return dot
 
 	def matrix_inverse(self):
 		self.LU()
