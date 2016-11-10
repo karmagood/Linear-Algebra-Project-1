@@ -32,8 +32,8 @@ class Matrix(object):
 		"""Computing rearengments of rows for Doolittle's Algorithm"""
 		m = self.matrix.shape[0]
 		ident = np.identity(m)
-		for i in range(m):
-			row = max(range(i,m), key=lambda k: abs(self.matrix.item(k,i)))
+		for i in range(m-1, -1, -1):
+			row = max(range(0,i), key=lambda k: abs(self.matrix.item(k,i)))
 			if i != row:
 				temp = copy.copy(ident[i,:])
 				ident[i,:] =  ident[row,:]
