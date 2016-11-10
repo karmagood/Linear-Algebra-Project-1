@@ -77,8 +77,6 @@ class Matrix(object):
 	def check_matrix(self):
 		if not self.matrix.shape[0] == self.matrix.shape[1]:
 			raise Exception("Matrix is not square matrix, it doesn't have inverse")
-		if not all([all([str(j).isdigit() for j in i]) for i in self.matrix]):
-			raise Exception("Wrong matrix")
 		d = self.det()
 		if d:
 			raise Exception(d)
