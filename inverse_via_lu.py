@@ -25,7 +25,8 @@ class Matrix(object):
 			for i in range(j, m):
 				s2 = sum(self.U[k,j] * self.L[i,k] for k in range(j))
 				self.L[i,j] = (PA[i,j] - s2) / self.U[j,j]
-		
+		self.L = np.around(self.L,1)
+		self.U = np.around(self.U,1)
 
 	def _P(self):
 		"""Computing rearengments of rows for Doolittle's Algorithm"""
@@ -73,19 +74,20 @@ class Matrix(object):
 		tran = [[j[i] for j in matrix] for i in range(len(matrix[0]))]
 		return tran
 
+	def check_matrix(self):
+		if not self.matrix.shape[0] == self.matrix.shape[1]:
+			return "Matrix is not square matrix, it doesn't have inverse"
+		if not all([all([str(j).isdigit() for j in i]) for i in self.matrix]):
+			return "Wrong matrix"
+
+	def det(self):
+		determ = round(np.linalg.det(self.matrix),1)
+		
+		if not determ:
+		 	return "The determinant of a matrix is equal to zero, then the matrix does not have an inverse" 
+
 	def matrix_inverse(self):
 		self.LU()
-		return np.matrix(self.gj_inverse(self.U))*np.matrix(self.gj_inverse(self.L))*np.matrix(self.transpose(self.P))
+		inversed_matrix = np.matrix(self.gj_inverse(self.U))*np.matrix(self.gj_inverse(self.L))*np.matrix(self.transpose(self.P))
+		return inversed_matrix.round(1)
 
-
-if __name__ == '__main__':
-	mat = Matrix([[1,2,3],[2,3,1],[2,1,2]])
-	mat.LU()
-	print(mat.P)
-	print(mat.U)
-	print(mat.L)
-	#print(np.dot(mat.P,np.dot(mat.L, mat.U)))
-	print(mat.gj_inverse(mat.L))
-	print(mat.gj_inverse(mat.U))
-	print(mat.matrix_inverse())
-	print(mat.matrix_inverse())
