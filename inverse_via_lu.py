@@ -79,7 +79,9 @@ class Matrix(object):
 			return "Matrix is not square matrix, it doesn't have inverse"
 		if not all([all([str(j).isdigit() for j in i]) for i in self.matrix]):
 			return "Wrong matrix"
-
+		d = self.det()
+		if d:
+			return d
 	def det(self):
 		determ = round(np.linalg.det(self.matrix),1)
 		
@@ -88,6 +90,7 @@ class Matrix(object):
 
 	def matrix_inverse(self):
 		self.LU()
+		self.check_matrix()
 		inversed_matrix = np.matrix(self.gj_inverse(self.U))*np.matrix(self.gj_inverse(self.L))*np.matrix(self.transpose(self.P))
 		return inversed_matrix.round(1)
 
