@@ -90,7 +90,7 @@ class Matrix(object):
 		matrix_A = self.matrix
 		inverse = matrix.matrix_inverse()
 		dot = np.dot(matrix_A, inverse)
-		return dot
+		return dot.round(0)
 
 	def matrix_inverse(self):
 		self.LU()
