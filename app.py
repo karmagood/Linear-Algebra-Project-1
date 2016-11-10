@@ -10,7 +10,7 @@ def to_matrix(s):
 
     return matrix
 
-def matrix_to_sring(m):
+def matrix_to_string(m):
     new_matrix = '$\\left(\\begin{matrix}\n'
     for el in range(len(m)):
         answer = ''
