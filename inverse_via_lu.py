@@ -33,7 +33,7 @@ class Matrix(object):
 		m = self.matrix.shape[0]
 		ident = np.identity(m)
 		for i in range(m-1, -1, -1):
-			row = max(range(0,i), key=lambda k: abs(self.matrix.item(k,i)))
+			row = max(range(0,i+1), key=lambda k: abs(self.matrix.item(k,i)))
 			if i != row:
 				temp = copy.copy(ident[i,:])
 				ident[i,:] =  ident[row,:]
