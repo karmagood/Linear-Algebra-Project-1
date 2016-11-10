@@ -76,12 +76,12 @@ class Matrix(object):
 
 	def check_matrix(self):
 		if not self.matrix.shape[0] == self.matrix.shape[1]:
-			return "Matrix is not square matrix, it doesn't have inverse"
+			raise Exception("Matrix is not square matrix, it doesn't have inverse")
 		if not all([all([str(j).isdigit() for j in i]) for i in self.matrix]):
-			return "Wrong matrix"
+			raise Exception("Wrong matrix")
 		d = self.det()
 		if d:
-			return d
+			raise Exception(d)
 	def det(self):
 		determ = round(np.linalg.det(self.matrix),1)
 		
