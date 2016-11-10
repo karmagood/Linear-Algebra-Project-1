@@ -4,7 +4,7 @@ from inverse_via_lu import Matrix
 class TestMatrixInverse(unittest.TestCase):
 
     def test_LU_2x2_matrix(self):
-        matrix = Matrix([[1, 4], [5, 6]])
+        matrix = Matrix([[3, 4], [5, 6]])
         matrix.LU()
         self.assertEqual(matrix.L.tolist(), [[1.0, 0.0], [0.6, 1.0]])
         self.assertEqual(matrix.U.tolist(), [[5.0, 6], [0.0, 0.4]])
