@@ -38,6 +38,7 @@ def get_index():
             print(to_matrix(matrix))
             new_matrix = Matrix(to_matrix(matrix))
             new_matrix = new_matrix.matrix_inverse()
+            new_matrix = matrix_to_string(new_matrix)
             return render_template('index.html', matrix=matrix, new_matrix=new_matrix)
         else:
             return render_template('index.html')
