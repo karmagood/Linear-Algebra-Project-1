@@ -1,6 +1,13 @@
 import numpy as np
 import copy
 
+class NonInvertibleMatrix(Exception):
+	pass
+
+class WrongSize(Exception):
+	pass
+		
+
 class Matrix(object):
 	"""Simple matrix calls for inverses"""
 	def __init__(self, matrix):
@@ -76,10 +83,10 @@ class Matrix(object):
 
 	def check_matrix(self):
 		if not self.matrix.shape[0] == self.matrix.shape[1]:
-			raise Exception("Matrix is not square matrix, it doesn't have an inverse")
+			raise WrongSize("Matrix is not square matrix, it doesn't have an inverse")
 		d = self.det()
 		if d:
-			raise Exception(d)
+			raise NonInvertibleMatrix(d)
 	def det(self):
 		determ = round(np.linalg.det(self.matrix),1)
 		

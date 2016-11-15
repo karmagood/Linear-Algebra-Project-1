@@ -42,8 +42,10 @@ def get_index():
             return render_template('index.html', matrix=matrix, new_matrix=new_matrix)
         else:
             return render_template('index.html')
-    except:
-        return render_template('index.html', error_message="Impossible to find matrix inversion.")
+    except WrongSize:
+        return render_template('index.html', error_message="Matrix should be square")
+    except NonInvertibleMatrix:
+        return render_template('index.html', error_message="It is a singular matrix")
 
 if __name__ == "__main__":
     app.run(debug = True)
