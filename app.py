@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from inverse_via_lu import Matrix
+from inverse_via_lu import Matrix, WrongSize, NonInvertibleMatrix
 app = Flask(__name__, )
 
 def to_matrix(s):
