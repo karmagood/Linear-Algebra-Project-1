@@ -39,13 +39,13 @@ def get_index():
             new_matrix = Matrix(to_matrix(matrix))
             new_matrix = new_matrix.matrix_inverse()
             new_matrix = matrix_to_string(new_matrix)
-            return render_template('index.html', matrix=matrix, new_matrix=new_matrix)
+            return render_template('matrix_index.html', matrix=matrix, new_matrix=new_matrix)
         else:
-            return render_template('index.html')
+            return render_template('matrix_index.html')
     except WrongSize:
-        return render_template('index.html', error_message="Matrix should be square")
+        return render_template('matrix_index.html', error_message="Matrix should be square")
     except NonInvertibleMatrix:
-        return render_template('index.html', error_message="It is a singular matrix")
+        return render_template('matrix_index.html', error_message="It is a singular matrix")
 
 if __name__ == "__main__":
     app.run(debug = True)
